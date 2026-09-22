@@ -16,7 +16,7 @@ cd backend
 mvn spring-boot:run
 ```
 
-La API queda disponible en `http://localhost:8080` y se conecta a la base PostgreSQL `SitiEnergia`.
+La API queda disponible en `http://localhost:8080` localmente y puede desplegarse en Render usando las variables `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET`, `ADMIN_PASSWORD` y `PORT`.
 
 La contraseña se lee desde la variable de entorno `DB_PASSWORD`. Define la contraseña local antes de iniciar:
 
