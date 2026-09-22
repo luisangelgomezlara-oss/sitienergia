@@ -1,0 +1,15 @@
+# Java / Spring
+backend/target/
+backend/data/
+data/
+*.mv.db
+*.trace.db
+*.log
+
+# Flutter
+frontend/.dart_tool/
+frontend/.packages
+frontend/build/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/.idea/

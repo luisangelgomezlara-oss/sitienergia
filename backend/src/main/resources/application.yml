@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sitienergia
+    username: postgres
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+server:
+  port: 8080
+  address: 0.0.0.0
+
+app:
+  jwt-secret: ${JWT_SECRET}
+  jwt-expiration-ms: 86400000
+
+logging:
+  level:
+    org.springframework.security: INFO
