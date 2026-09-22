@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class Session { final String token; final String nombre; final String rol; Session({required this.token, required this.nombre, required this.rol}); }
 
 class Api {
-  static const baseUrl = 'http://127.0.0.1:8080/api';
+  static const baseUrl = String.fromEnvironment('API_BASE_URL', defaultValue: 'http://127.0.0.1:8080/api');
   static Future<Session> login(String email, String password) async {
     final response = await http.post(Uri.parse('$baseUrl/auth/login'), headers: {'Content-Type': 'application/json'}, body: jsonEncode({'email': email, 'password': password})).timeout(const Duration(seconds: 8), onTimeout: () => throw TimeoutException('No se pudo conectar con el servidor'));
     if (response.statusCode != 200) throw Exception('Correo o contraseña incorrectos');

@@ -194,7 +194,7 @@ La aplicación utiliza un túnel USB hacia el backend:
 http://127.0.0.1:8080/api
 ```
 
-Antes de ejecutar Flutter debe crearse el túnel con `adb reverse tcp:8080 tcp:8080`.
+Antes de ejecutar Flutter debe crearse el túnel con `adb reverse tcp:8080 tcp:8080`. Para dispositivos remotos se puede usar ngrok y pasar la URL con `--dart-define=API_BASE_URL=https://tu-url.ngrok-free.app/api`.
 
 ## Validaciones realizadas
 

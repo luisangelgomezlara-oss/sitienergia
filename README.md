@@ -56,7 +56,7 @@ flutter pub get
 flutter run
 ```
 
-Para probar desde el teléfono conectado por USB, se usa `adb reverse` y el cliente apunta a `127.0.0.1:8080`. Ejecuta `adb reverse tcp:8080 tcp:8080` antes de iniciar Flutter.
+Para probar desde el teléfono conectado por USB, se usa `adb reverse tcp:8080 tcp:8080`. Para probar desde otros dispositivos o redes, inicia `ngrok http 8080` y ejecuta Flutter con `--dart-define=API_BASE_URL=https://tu-url.ngrok-free.app/api`.
 
 ## Alcance de esta entrega
 
