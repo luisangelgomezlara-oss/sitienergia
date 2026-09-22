@@ -188,13 +188,13 @@ flutter run -d KN7THQHYORAILFMF
 
 `KN7THQHYORAILFMF` corresponde al teléfono Android conectado por USB. También puede reemplazarse por el identificador de otro dispositivo disponible.
 
-La aplicación utiliza actualmente la dirección local del computador:
+La aplicación utiliza un túnel USB hacia el backend:
 
 ```text
-http://192.168.1.6:8080/api
+http://127.0.0.1:8080/api
 ```
 
-Si cambia la dirección IP del computador, es necesario actualizar `baseUrl` en `frontend/lib/api.dart`.
+Antes de ejecutar Flutter debe crearse el túnel con `adb reverse tcp:8080 tcp:8080`.
 
 ## Validaciones realizadas
 

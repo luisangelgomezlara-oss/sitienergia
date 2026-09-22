@@ -1,17 +1,18 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:http/http.dart' as http;
 
 class Session { final String token; final String nombre; final String rol; Session({required this.token, required this.nombre, required this.rol}); }
 
 class Api {
-  static const baseUrl = 'http://192.168.1.6:8080/api';
+  static const baseUrl = 'http://127.0.0.1:8080/api';
   static Future<Session> login(String email, String password) async {
-    final response = await http.post(Uri.parse('$baseUrl/auth/login'), headers: {'Content-Type': 'application/json'}, body: jsonEncode({'email': email, 'password': password}));
+    final response = await http.post(Uri.parse('$baseUrl/auth/login'), headers: {'Content-Type': 'application/json'}, body: jsonEncode({'email': email, 'password': password})).timeout(const Duration(seconds: 8), onTimeout: () => throw TimeoutException('No se pudo conectar con el servidor'));
     if (response.statusCode != 200) throw Exception('Correo o contraseña incorrectos');
     final data = jsonDecode(response.body); return Session(token: data['token'], nombre: data['nombre'], rol: data['rol']);
   }
   static Future<void> register(String nombre, String email, String telefono, String password) async {
-    final response = await http.post(Uri.parse('$baseUrl/auth/register'), headers: _headers(''), body: jsonEncode({'nombre': nombre, 'email': email, 'telefono': telefono, 'password': password}));
+    final response = await http.post(Uri.parse('$baseUrl/auth/register'), headers: _headers(''), body: jsonEncode({'nombre': nombre, 'email': email, 'telefono': telefono, 'password': password})).timeout(const Duration(seconds: 8), onTimeout: () => throw TimeoutException('No se pudo conectar con el servidor'));
     if (response.statusCode != 201) throw Exception('No se pudo crear la cuenta');
   }
   static Future<List<dynamic>> categories(String token) async => _list('/categorias', token);

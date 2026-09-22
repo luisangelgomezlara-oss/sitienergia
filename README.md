@@ -56,7 +56,7 @@ flutter pub get
 flutter run
 ```
 
-El cliente apunta a `192.168.1.6:8080`, la IP local configurada para probar desde un teléfono físico. Si cambia la IP del computador, actualiza `baseUrl` en `frontend/lib/api.dart`.
+Para probar desde el teléfono conectado por USB, se usa `adb reverse` y el cliente apunta a `127.0.0.1:8080`. Ejecuta `adb reverse tcp:8080 tcp:8080` antes de iniciar Flutter.
 
 ## Alcance de esta entrega
 
