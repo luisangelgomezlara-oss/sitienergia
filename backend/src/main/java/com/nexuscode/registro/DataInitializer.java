@@ -1,7 +1,10 @@
 package com.nexuscode.registro;
 
-import com.nexuscode.registro.category.*;
-import com.nexuscode.registro.user.*;
+import com.nexuscode.registro.entities.IncidentCategory;
+import com.nexuscode.registro.entities.Role;
+import com.nexuscode.registro.entities.User;
+import com.nexuscode.registro.repositories.IncidentCategoryRepository;
+import com.nexuscode.registro.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class DataInitializer {
-    @Bean CommandLineRunner seed(UserRepository users, IncidentCategoryRepository categories, PasswordEncoder encoder, @Value("${ADMIN_PASSWORD}") String adminPassword) {
+    @Bean
+    CommandLineRunner seed(UserRepository users, IncidentCategoryRepository categories, PasswordEncoder encoder,
+            @Value("${ADMIN_PASSWORD:Admin123}") String adminPassword) {
         return args -> {
             var existingAdmin = users.findByEmail("admin@nexuscode.com");
             if (existingAdmin.isPresent()) {
@@ -22,7 +27,10 @@ public class DataInitializer {
                 admin.setActivo(true);
                 users.save(admin);
             } else if (!users.existsByEmail("admin@sitienergia.com")) {
-                users.save(new User("Administrador SitiEnergia", "admin@sitienergia.com", encoder.encode(adminPassword), Role.ADMIN, "3000000000"));
+                User nuevoAdmin = new User("Administrador SitiEnergia", "admin@sitienergia.com",
+                        encoder.encode(adminPassword), Role.ADMIN, "3000000000");
+                nuevoAdmin.setActivo(true); // <-- ¡Esta es la llave maestra que faltaba!
+                users.save(nuevoAdmin);
             }
             if (categories.count() == 0) {
                 categories.save(new IncidentCategory("Falla en red de baja tension", "Redes Electricas"));

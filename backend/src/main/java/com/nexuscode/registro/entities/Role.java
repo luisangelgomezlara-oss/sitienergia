@@ -1,4 +1,4 @@
-package com.nexuscode.registro.user;
+package com.nexuscode.registro.entities;
 
 public enum Role {
     ADMIN, TECNICO, CLIENTE

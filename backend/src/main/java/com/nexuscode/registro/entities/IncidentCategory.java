@@ -1,4 +1,4 @@
-package com.nexuscode.registro.category;
+package com.nexuscode.registro.entities;
 
 import jakarta.persistence.*;
 

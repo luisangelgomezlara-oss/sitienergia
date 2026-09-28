@@ -1,4 +1,4 @@
-package com.nexuscode.registro.category;
+package com.nexuscode.registro.controllers;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.nexuscode.registro.entities.IncidentCategory;
+import com.nexuscode.registro.repositories.IncidentCategoryRepository;
 
 @RestController
 @RequestMapping("/api/categorias")

@@ -1,6 +1,5 @@
 package com.nexuscode.registro.security;
 
-import com.nexuscode.registro.user.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.nexuscode.registro.repositories.UserRepository;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
